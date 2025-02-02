@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 # set up
 PROJECT=str
@@ -11,7 +11,7 @@ DIR_LIBS_64="/lib64/${GROUP}"
 # make sure all variables are set
 if [[ -z "${CC}" ]]; then
     echo "CC= (c compiler) is empty!" 1>&2
-    exit 1
+    exit -1
 fi
 
 # create system directories
