@@ -9,7 +9,7 @@
 ## Installation
 
 ```
-./install.sh
+./compile.sh && ./install.sh
 ```
 
 ## Platforms
