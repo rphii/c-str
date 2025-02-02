@@ -18,4 +18,3 @@ cp src/*.h "${DIR_INCLUDES}"
 cp "build/32/${PROJECT}.so" "${DIR_LIBS_32}"
 cp "build/64/${PROJECT}.so" "${DIR_LIBS_64}"
 
-
