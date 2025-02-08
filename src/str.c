@@ -572,15 +572,17 @@ IMPL_STR_HASH_CI(rstr, RStr, , );
     size_t A##_length_nof(const N str) { \
         size_t len = A##_length(str); \
         size_t n = 0, m = 0; \
-        RStr rstr = A##_rstr(str); \
+        RStr snip = A##_rstr(str); \
+        RStr pat = RSTR("\033["); \
         for(;;) { \
-            RStr snip = RSTR_I0(rstr, m); \
-            n = rstr_find_substr(snip, RSTR("\033[")); \
+            snip = RSTR_I0(snip, m); \
+            n = rstr_find_substr(snip, pat); \
             if(n >= rstr_length(snip)) break; \
-            snip = RSTR_I0(rstr, n + RSTR("\033[").last); \
-            m = rstr_find_ch(snip, 'm', 0) + 1; \
-            len -= (m - n); \
-            if(m >= rstr_length(snip)) break; \
+            snip = RSTR_I0(snip, n + pat.last); \
+            m = rstr_find_ch(snip, 'm', 0); \
+            len -= (m + pat.last); \
+            if(m++ >= rstr_length(snip)) break; \
+            len -= (bool)(m); \
         } \
         return len; \
     }
