@@ -568,6 +568,26 @@ IMPL_STR_HASH_CI(str, Str, , );
 IMPL_STR_HASH_CI(rstr, RStr, , );
 /*}}}*/
 
+#define IMPL_STR_LENGTH_NOF(A, N) /*{{{*/ \
+    size_t A##_length_nof(const N str) { \
+        size_t len = A##_length(str); \
+        size_t n = 0, m = 0; \
+        RStr rstr = A##_rstr(str); \
+        for(;;) { \
+            RStr snip = RSTR_I0(rstr, m); \
+            n = rstr_find_substr(snip, RSTR("\033[")); \
+            if(n >= rstr_length(snip)) break; \
+            snip = RSTR_I0(rstr, n + RSTR("\033[").last); \
+            m = rstr_find_ch(snip, 'm', 0) + 1; \
+            len -= (m - n); \
+            if(m >= rstr_length(snip)) break; \
+        } \
+        return len; \
+    }
+IMPL_STR_LENGTH_NOF(str, Str);
+IMPL_STR_LENGTH_NOF(rstr, RStr);
+/*}}}*/
+
 #define IMPL_STR_SPLICE(A, N) /*{{{*/ \
     RStr A##_splice(const N to_splice, RStr *prev_splice, char sep) { \
         RStr result = A##_rstr(to_splice); \

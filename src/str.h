@@ -151,6 +151,7 @@ STR_INCLUDE_CONST(size_t, hash_ci);
 PSTR_INCLUDE_CONST(size_t, hash);
 PSTR_INCLUDE_CONST(size_t, hash_ci);
 
+STR_INCLUDE_CONST(size_t, length_nof);
 STR_INCLUDE_CONST(RStr, splice, RStr *prev_splice, char sep);
 
 int str_cmp(const Str a, const Str b);
