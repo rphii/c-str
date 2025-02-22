@@ -1,6 +1,6 @@
 prefix=/usr
 includedir=${prefix}/include
-libdir=${prefix}/lib/rphii
+libdir=${prefix}/lib64/rphii
 
 Name: c-str
 Description: C string library
