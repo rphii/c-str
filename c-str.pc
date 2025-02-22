@@ -3,7 +3,7 @@ includedir=${prefix}/include
 libdir=${prefix}/lib/rphii
 
 Name: c-str
-Description: C attribute header
+Description: C string library
 Cflags: -I${includedir}/rphii
 Libs: -L${libdir} -lstr
 Version: 9999
